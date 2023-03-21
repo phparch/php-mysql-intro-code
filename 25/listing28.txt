@@ -1,0 +1,24 @@
+while($row = mysqli_fetch_assoc($result))
+{
+    // ...
+    $movie_title_row = ... // Movie row info of first two columns (image and title)
+
+    IF user is logged in
+
+        IF logged in user has admin privileges
+
+            $movie_title_row .= ... // Add trashcan link to remove movie for third coloum
+
+        ELSE IF logged in user has user priviliges AND this movie can be reserved 
+             AND this user doesn't already have this movie reserved
+
+            movie_title_row .= ... // Add shopping cart link to reserve movie for third column
+
+    ELSE user is not logged in
+
+        $movie_title_row .= ... // Add empty info for third column
+    
+    ENDIF
+
+    echo $movie_title_row
+}

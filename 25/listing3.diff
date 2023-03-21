@@ -1,0 +1,14 @@
+  Unchanged Lines
+    ...
+    $genres = [...];
+    
+    if (isset($_POST['add_movie_submission'], $_POST['movie_title'],
+            $_POST['movie_rating'], $_POST['movie_director'],
+            $_POST['movie_running_time_in_minutes']
++ Added Line
++           , $_POST['movie_copies_number']
+  Unchanged Lines
+            ))
+            {
+                require_once('dbconnection.php');
+                ...

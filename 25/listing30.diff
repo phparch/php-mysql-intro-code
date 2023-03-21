@@ -1,0 +1,15 @@
+  Unchanged Lines
+    <?php
+        $page_title = isset($page_title) ? $page_title : "";
+
+        if (session_status() == PHP_SESSION_NONE)
+        {
+            session_start();
+        }
+
++ Added Line
++       require_once('queryutils.php');
+  Unchanged Lines
+
+    ?>
+    <nav ...>

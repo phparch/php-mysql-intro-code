@@ -1,0 +1,14 @@
+  Unchanged Lines
+    if (mysqli_num_rows($result) == 1)
+    {
+        $row = mysqli_fetch_assoc($result);
+
+        $movie_title = $row['title'];
+        ...
+        $movie_image_file = $row['image_file'];
++ Added Line
++       $number_of_copies = $row['number_of_copies'];
+  Unchanged Lines
+
+        if (empty($movie_image_file))
+        {

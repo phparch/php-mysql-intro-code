@@ -1,0 +1,11 @@
+  Unchanged Lines
+      <div class="card">
+        <div class="card-body">
+          <h1>Edit a Movie</h1>
+- Removed Lines
+-         <nav class="nav">
+-           <a class="nav-link" href="index.php">Movies I Like</a>
+-         </nav>
+  Unchanged Lines
+          <hr/>
+          ...

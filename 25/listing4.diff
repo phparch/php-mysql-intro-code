@@ -1,0 +1,11 @@
+  Unchanged Lines
+    if (isset($_POST[...],...))
+    {
+        ...
+        $movie_runtime = $_POST['movie_running_time_in_minutes'];
+        $checked_movie_genres = $_POST['movie_genre_checkbox'];
++ Added Line
++       $number_of_copies = (int) $_POST['movie_copies_number'];
+  Unchanged Lines
+
+        $movie_genre_text = "";

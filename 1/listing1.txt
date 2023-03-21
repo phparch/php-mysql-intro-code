@@ -1,0 +1,13 @@
+GET /phpWebDevMySQL/ HTTP/1.1
+Host: flibbertigiblets.com
+Connection: keep-alive
+Cache-Control: max-age=0
+Authorization: Basic ZmFsbDIwMTdwaHA6dXNlIHRoZSBmb3JjZQ==
+Upgrade-Insecure-Requests: 1
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) 
+ AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.94 Safari/537.36
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,
+ image/apng,*/*;q=0.8
+Accept-Encoding: gzip, deflate
+Accept-Language: en-US,en;q=0.9
+If-Modified-Since: Mon, 13 Nov 2017 21:51:51 GMT

@@ -1,0 +1,102 @@
+<?php
+  require_once('pagetitles.php');
+  $page_title = MR_HOME_PAGE;
+?>
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <title><?= $page_title ?></title>
+  </head>
+  <body>
+  <?php
+    require_once('navmenu.php');
+  ?>
+    <div class="card">
+      <div class="card-body">
+        <h1><?= $page_title ?></h1>
+        <?php
+            require_once('dbconnection.php');
+            require_once('movielistingfileconstants.php');
+            require_once('queryutils.php');
+
+            $dbc = mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME)
+                    or trigger_error('Error connecting to MySQL server for DB_NAME.', E_USER_ERROR);
+
+            $query = "SELECT id, title, image_file, number_of_copies, number_reserved FROM movieListing ORDER BY title";
+
+            $result = mysqli_query($dbc, $query)
+                    or trigger_error('Error querying database movieListing', E_USER_ERROR);
+
+            if (mysqli_num_rows($result) > 0):
+
+        ?>
+        <table class="table table-striped table-hover">
+          <thead>
+            <tr>
+              <th scope="col"><h4>Movie Titles</h4></th>
+              <th scope="col"></th>
+              <th scope="col"></th>
+            </tr>
+          </thead>
+          <tbody>
+        <?php
+            while($row = mysqli_fetch_assoc($result))
+            {
+                $movie_image_file = $row['image_file'];
+
+                if (empty($movie_image_file))
+                {
+                    $movie_image_file = ML_UPLOAD_PATH . ML_DEFAULT_MOVIE_FILE_NAME;
+                }
+
+                $movie_title_row = "<tr><td><img src=" . $movie_image_file . " class='img-thumbnail'" .
+                        "style='max-height: 75px;' alt='Movie image'></td>" .
+                        "<td class='align-middle'><a class='nav-link' href='moviedetails.php?id=" .
+                        $row['id'] . "'>" . $row['title'] ."</a></td>";
+
+                if (isset($_SESSION['user_access_privileges']))
+                {
+                    if ($_SESSION['user_access_privileges'] == 'admin')
+                    {
+                        $movie_title_row .= "<td class='align-middle'><a class='nav-link' href='removemovie.php?id_to_delete=" .
+                                $row['id'] ."'><i class='fas fa-trash-alt'></i></a></td></tr>";
+                    }
+                    else if ($_SESSION['user_access_privileges'] == 'user'
+                            && ($row['number_of_copies'] > $row['number_reserved'])
+                            && !isMovieReservedByUser($row['id'], $_SESSION['user_id']))
+                    {
+                        $movie_title_row .= "<td class='align-middle'><a class='nav-link' href='reservemovie.php?id_to_reserve=" .
+                                $row['id'] ."'><i class='fas fa-shopping-cart'></i></a></td></tr>";
+                    }
+                    else // We shouldn't ever get here, but it's a good practice
+                    {
+                        $movie_title_row .= "<td class='align-middle'></td>";
+                    }
+                }
+                else
+                {
+                    $movie_title_row .= "<td class='align-middle'></td>";
+                }
+
+                $movie_title_row .= "</tr>";
+
+                echo $movie_title_row;
+            }
+        ?>
+          </tbody>
+        </table>
+        <?php
+            else:
+        ?>
+        <h3>No Movies Found :-(</h3>
+        <?php
+            endif;
+        ?>
+      </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+  </body>
+</html>

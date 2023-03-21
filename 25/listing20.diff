@@ -1,0 +1,23 @@
+  Unchanged Lines
+    ...
+    $dbc = mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME)
+            or trigger_error(
+               'Error connecting to MySQL server for' . DB_NAME, 
+               E_USER_ERROR
+            );
+
+- Removed Lines
+-   $query = "SELECT * FROM movieListing WHERE id = $id";
+-
+-   $result = mysqli_query($dbc, $query)
++ Added Lines
++   $query = "SELECT * FROM movieListing WHERE id = ?";
++
++   $result = parameterizedQuery($dbc, $query, 'i', $id)
+  Unchanged Lines
+            or trigger_error('Error querying database movieListing', E_USER_ERROR);
+
+    if (mysqli_num_rows($result) == 1)
+    {
+        ...
+    }

@@ -1,0 +1,11 @@
+  Unchanged Lines
+    elseif (isset($_POST[...],...))
+    {
+        $movie_title = $_POST['movie_title'];
+        ...
+        $movie_image_file = $_POST['movie_image_file'];
++ Added Line
++       $number_of_copies = (int)$_POST['movie_copies_number'];
+  Unchanged Lines
+
+        $movie_genre_text = "";

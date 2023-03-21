@@ -1,0 +1,22 @@
+  Unchanged Lines
+    ...
+    if (isset($_POST['delete_movie_submission']) && isset($_POST['id'])):
+
+        $id = $_POST['id'];
+
+        // Query image file from DB
+- Removed Lines
+-       $query = "SELECT image_file FROM movieListing WHERE id = $id";
+-
+-       $result = mysqli_query($dbc, $query)
++ Added Lines
++       $query = "SELECT image_file FROM movieListing WHERE id = ?";
++
++       $result = parameterizedQuery($dbc, $query, 'i', $id)
+  Unchanged Lines
+                or trigger_error('Error querying database movieListing', E_USER_ERROR);
+
+        if (mysqli_num_rows($result) == 1)
+        {
+            //...
+        }

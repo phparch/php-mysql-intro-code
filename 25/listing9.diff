@@ -1,0 +1,16 @@
+  Unchanged Lines
+    if (isset($_GET['id_to_edit']))
+    {                
+        $id_to_edit = $_GET['id_to_edit'];
+- Removed Lines
+-       $query = "SELECT * FROM movieListing WHERE id = $id_to_edit";
+-
+-       $result = mysqli_query($dbc, $query)
+-               or trigger_error('Error querying database movieListing', E_USER_ERROR);
++ Added Lines
++       $query = "SELECT * FROM movieListing WHERE id = ?";
++
++       $result = parameterizedQuery($dbc, $query, 'i', $id_to_edit)
+  Unchanged Lines
+        if (mysqli_num_rows($result) == 1)
+        {

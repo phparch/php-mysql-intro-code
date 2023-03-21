@@ -1,0 +1,14 @@
+  Unchanged Lines
+    <body>
+    <?php
+      require_once('navmenu.php');
+    ?>
+      <div class="card">
+        <div class="card-body">
+          <h1><?= $page_title ?></h1>
+- Removed Line
+-         <p class='nav-link'>If you have a movie you would like to include, 
+-                             feel free to <a href='addmovie.php'> add one</a></p>
+  Unchanged Lines
+          <?php
+            require_once('dbconnection.php');

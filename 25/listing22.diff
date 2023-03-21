@@ -1,0 +1,31 @@
+  Unchanged Lines
+    <table class="table table-striped">
+      <tbody>
+        <tr>
+          <th scope="row">Rating</th>
+          <td><?= $row['rating'] ?></td>
+        </tr>
+        ...
+        <tr>
+          <th scope="row">Genre</th>
+          <td><?= $row['genre'] ?></td>
+        </tr>
+        <tr>
+          <th scope="row">Number of Copies</th>
+          <td><?= $row['number_of_copies'] - $row['number_reserved'] ?></td>
+        </tr>
++ Added Lines
++   <?php
++           if (isset($_SESSION['user_access_privileges']) 
++               && $_SESSION['user_access_privileges'] == 'admin'):
++   ?>
++       <tr>
++         <th scope="row">Number in Inventory</th>
++         <td><?= $row['number_of_copies'] ?></td>
++       </tr>
++       <?php 
++           endif;
++       ?>
+  Unchanged Lines
+      </tbody>
+    </table>

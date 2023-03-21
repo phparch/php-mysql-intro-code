@@ -1,0 +1,21 @@
+  Unchanged Lines
+        elseif (isset($_GET['id_to_delete'])):
+    ?>
+            <h3 class="text-danger">Confirm Deletion of the Following Movie:</h3><br/>
+    <?php
+            $id = $_GET['id_to_delete'];
+
+- Removed Lines
+-           $query = "SELECT * FROM movieListing WHERE id = $id";
+-
+-           $result = mysqli_query($dbc, $query)
++ Added Lines
++           $query = "SELECT * FROM movieListing WHERE id = ?";
++
++           $result = parameterizedQuery($dbc, $query, 'i', $id)
+  Unchanged Lines
+                    or trigger_error('Error querying database movieListing', E_USER_ERROR);
+
+            if (mysqli_num_rows($result) == 1)
+            {
+                ...

@@ -1,0 +1,12 @@
+  Unchanged Lines
+    <html>
+      <head>
+        <link ...>
+- Removed Line
+-   <title>Add a Movie</title>
++ Added Line
++   <title><?= $page_title ?></title>
+Unchanged Lines
+      </head>
+    <body>
+    ...

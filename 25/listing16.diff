@@ -1,0 +1,20 @@
+  Unchanged Lines
+        ...
+        if (mysqli_num_rows($result) == 1)
+        {
+            ...
+        }
+- Removed Lines
+-       $query = "DELETE FROM movieListing WHERE id = $id";
+-
+-       $result = mysqli_query($dbc, $query)
++ Added Lines
++       $query = "DELETE FROM movieListing WHERE id = ?";
++
++       $result = parameterizedQuery($dbc, $query, 'i', $id)
+  Unchanged Lines
+                or trigger_error('Error querying database movieListing', E_USER_ERROR);
+
+        header("Location: " . dirname($_SERVER['PHP_SELF']));
+    
+    elseif (isset($_POST['do_not_delete_movie_submission'])):

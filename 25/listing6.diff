@@ -1,0 +1,33 @@
+  Unchanged Lines
+    ...
+    if (empty($file_error_message))
+    {
+        ...
+        $movie_image_file_path = addMovieImageFileReturnPathLocation();
+        
+- Removed Lines
+-       $query = "INSERT INTO movieListing (title, rating, director, running_time_in_minutes, "
+-              . "genre, image_file) VALUES ('$movie_title', '$movie_rating', '$movie_director', "
+-              . "'$movie_runtime', '$movie_genre_text', '$movie_image_file_path')";
+-
+-       mysqli_query($dbc, $query)
+-               or trigger_error('Error querying database movieListing: Failed to insert movie listing', 
+-                                E_USER_ERROR);
++ Added Lines
++       $query = "INSERT INTO movieListing (title, rating, director, running_time_in_minutes, "
++              . "genre, image_file, number_of_copies) VALUES (?, ?, ?, ?, ?, ?, ?)";
++
++       $results = parameterizedQuery($dbc, $query, 'ssssssi', $movie_title, $movie_rating, 
++               $movie_director, $movie_runtime, $movie_genre_text, $movie_image_file_path, 
++               $number_of_copies); 
++       
++       if (mysqli_errno($dbc))
++       {
++           trigger_error('Error querying database movieListing', E_USER_ERROR);
++       }
+  Unchanged Lines
+
+        if (empty($movie_image_file_path))
+        {
+            $movie_image_file_path = ML_UPLOAD_PATH . ML_DEFAULT_MOVIE_FILE_NAME;
+        }

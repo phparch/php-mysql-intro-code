@@ -1,0 +1,20 @@
+  Unchanged Lines
+    <table class="table table-striped">
+      <tbody>
+        <tr>
+          <th scope="row">Rating</th>
+          <td><?= $row['rating'] ?></td>
+        </tr>
+        ...
+        <tr>
+          <th scope="row">Genre</th>
+          <td><?= $row['genre'] ?></td>
+        </tr>
++ Added Lines
++       <tr>
++         <th scope="row">Number of Copies</th>
++         <td><?= $row['number_of_copies'] ?></td>
++       </tr>
+  Unchanged Lines
+      </tbody>
+    </table>

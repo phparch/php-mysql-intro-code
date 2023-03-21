@@ -1,0 +1,26 @@
+  Unchanged Lines
+    ...
+    <div class="form-group row">
+      <label for="movie_image_file" 
+             class="col-sm-3 col-form-label-lg">Movie Image File</label>
+      <div class="col-sm-8">
+        <input type="file" class="form-control-file" id="movie_image_file" 
+               name="movie_image_file">
+      </div>
+    </div>          
++ Added Lines
++     <div class="form-group row">
++       <label for="movie_copies_number=" 
++              class="col-sm-3 col-form-label-lg">Number of Copies</label>
++       <div class="col-sm-8">
++         <input type="number" class="form-control" id="movie_copies_number" 
++                name="movie_copies_number" min="0" max="10" value="1">
++       </div>
++     </div>          
+  Unchanged Lines
+      </div>          
+      <button class="btn btn-primary" type="submit" 
+              name="add_movie_submission">Add Movie</button>
+    </form>
+    <script>
+    ...

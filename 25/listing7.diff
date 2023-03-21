@@ -1,0 +1,21 @@
+  Unchanged Lines
+    ...
+    <table class="table table-striped">
+      <tbody>
+      ...
+      <tr>
+        <th scope="row">Running Time (minutes)</th>
+        <td><?= $movie_runtime ?></td>
+      </tr>
+      <tr>
+        <th scope="row">Genre</th>
+        <td><?= $movie_genre_text ?></td>
+      </tr>
++ Added Lines
++     <tr>
++       <th scope="row">Number of Copies</th>
++       <td><?= $number_of_copies ?></td>
++     </tr>
+  Unchanged Lines
+      </tbody>
+    </table>

@@ -1,0 +1,43 @@
+  Unchanged Lines
+    if (empty($file_error_message))
+    {
+        $movie_image_file_path = addMovieImageFileReturnPathLocation();
+
+        // IF new image selected, set it to be updated in the database.
+        if (!empty($movie_image_file_path))
+        {
+            ...
+
+            $movie_image_file = $movie_image_file_path;
+        }
+
+- Removed Lines
+-       $query = "UPDATE movieListing SET title = '$movie_title', rating = '$movie_rating', "
+-              . "director = '$movie_director', running_time_in_minutes = '$movie_runtime', " 
+-              . "genre = '$movie_genre_text', image_file = '$movie_image_file' "
+-              . "WHERE id = $id_to_update";
+-
+-       mysqli_query($dbc, $query)
+-               or trigger_error(
+-                     'Error querying database movieListing: Failed to update movie listing', 
+-                     E_USER_ERROR
+-               );
++ Added Lines
++       $query = "UPDATE movieListing SET title = ?, rating = ?, director = ?, 
++                        running_time_in_minutes = ?, genre = ?, image_file = ?, 
++                        number_of_copies = ? 
++                 WHERE id = $id_to_update";
++       parameterizedQuery($dbc, $query, 'ssssssii', $movie_title, $movie_rating, 
++                          $movie_director, $movie_runtime, $movie_genre_text, 
++                          $movie_image_file, $number_of_copies, $id_to_update);
++
++       if(mysqli_errno($dbc))
++       {
++           trigger_error(
++              'Error querying database movieListing: Failed to update movie listing', 
++              E_USER_ERROR
++           );
++       }
+  Unchanged Lines
+
+        $nav_link = 'moviedetails.php?id=' . $id_to_update;
